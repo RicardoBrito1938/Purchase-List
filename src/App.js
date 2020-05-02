@@ -1,24 +1,36 @@
-import React from "react";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import pink from "@material-ui/core/colors/pink";
+import React from 'react';
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import pink from '@material-ui/core/colors/pink';
+
+import './App.css';
+import Header from './common/Header';
+import Home from './Home';
+import createList from './createList';
 
 function App() {
-  const theme = createMuiTheme({
-    palette: {
-      primary: pink,
-      secondary: {
-        main: "#2979ff",
-      },
-    },
-  });
+    const theme = createMuiTheme({
+        palette: {
+            primary: pink,
+            secondary: {
+                main: '#2979ff',
+            },
+        },
+    });
 
-  return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <h1>teste</h1>
-      </div>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <Router>
+                <>
+                    <Header />
+                    <Switch>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/list" component={createList} />
+                    </Switch>
+                </>
+            </Router>
+        </ThemeProvider>
+    );
 }
 
 export default App;
