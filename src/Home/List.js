@@ -8,14 +8,15 @@ import ListItem from './ListItem';
 import './List.css';
 
 const List = () => (
-    <CustomCard containerClass="list-container" footer={<ListFooter />}>
+    <CustomCard
+        containerClass="list-container"
+        link="/list"
+        footer={<ListFooter />}>
         <div>
             <p className="title">Month</p>
             <div className="list-card-body">
-                <div className="list-card-item">
-                    <ListItem icon={faShoppingBasket} text="1 remaining item" />
-                    <ListItem icon={faCheck} size="2 items on cart" />
-                </div>
+                <ListItem icon={faShoppingBasket} text="1 remaining item" />
+                <ListItem icon={faCheck} text="2 items on cart" />
             </div>
         </div>
     </CustomCard>

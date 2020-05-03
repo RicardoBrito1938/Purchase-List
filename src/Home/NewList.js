@@ -2,7 +2,7 @@ import React from 'react';
 import CustomCard from '../common/CustomCard';
 
 const NewList = () => (
-    <CustomCard containerClass="new-list-container">
+    <CustomCard link="/list" containerClass="new-list-container">
         <div>
             <p className="title">Adicionar novas listas</p>
         </div>
