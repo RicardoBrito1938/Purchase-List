@@ -1,68 +1,39 @@
 import React from 'react';
-
-import {TextField, MenuItem, InputAdornment, Button} from '@material-ui/core';
+import Form from './Form';
+import CustormCard from '../common/CustomCard';
+import {Checkbox, Typography} from '@material-ui/core';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPen, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 import './List.css';
 
-const units = ['kg', 'lt', 'un'];
-
 const createList = () => (
     <div className="page-container">
-        <form className="form-container">
-            <div className="form-row">
-                <TextField
-                    label="Lista"
-                    name="list"
-                    value={''}
-                    onChange={() => {}}
-                    required
-                />
-                <Button variant="outlined" color="secondary">
-                    Add
-                </Button>
-            </div>
-            <div className="form-row">
-                <TextField
-                    label="Product"
-                    name="product"
-                    value={''}
-                    onChange={() => {}}
-                    required
-                />
-                <TextField
-                    label="Quantity"
-                    name="quantity"
-                    value={''}
-                    onChange={() => {}}
-                    required
-                />
-                <TextField
-                    select
-                    label="Unity"
-                    name="unity"
-                    value={''}
-                    onChange={() => {}}
-                    required>
-                    {units.map((option) => (
-                        <MenuItem key="option" value="option">
-                            {option}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField
-                    label="Price"
-                    name="price"
-                    value={''}
-                    onChange={() => {}}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">R$</InputAdornment>
-                        ),
-                    }}
-                />
-            </div>
-        </form>
+        <Form />
+        <div className="list-items-container">
+            <CustormCard link="#" containerClass="list-item">
+                <div>
+                    <div className="list-item-header">
+                        <Typography variant="subtitle1" component="h2">
+                            Coffe
+                        </Typography>
+                        <Checkbox />
+                    </div>
+                    <Typography component="p">1 unit</Typography>
+                    <Typography component="p">R$12,00</Typography>
+                </div>
+            </CustormCard>
+        </div>
     </div>
 );
+
+const ListItemFooter = () => {
+    return (
+        <div className="list-item-footer">
+            <div className="list-card-footer-actions"></div>
+            <p>Total = R$50,00</p>
+        </div>
+    );
+};
 
 export default createList;
