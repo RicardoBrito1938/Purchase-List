@@ -1,19 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Divider from '@material-ui/core/Divider';
+import {
+    CardContent,
+    CardActions,
+    CardActionArea,
+    Card,
+    Divider,
+    CardMedia,
+} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 
 import './CustomCard.css';
 
-const CustomCard = ({children, footer, containerClass, link}) => (
+const CustomCard = ({children, footer, containerClass, image, link}) => (
     <div className={containerClass}>
         <Link to={link}>
             <Card className="card">
                 <CardActionArea className="card-action-area">
+                    {image && (
+                        <CardMedia
+                            component="img"
+                            className="card-img"
+                            height="100"
+                            image={image}
+                            title="image"
+                        />
+                    )}
                     <CardContent className="card-content">
                         {children}
                     </CardContent>
@@ -36,6 +48,7 @@ CustomCard.propTypes = {
     children: PropTypes.element.isRequired,
     footer: PropTypes.element,
     link: PropTypes.string.isRequired,
+    image: PropTypes.string,
 };
 
 export default CustomCard;

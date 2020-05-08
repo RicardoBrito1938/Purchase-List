@@ -14,6 +14,10 @@
     justify-content: center;
 }
 
+.card-img {
+    object-fit: cover;
+}
+
 .card-footer {
     height: 40px;
 }
