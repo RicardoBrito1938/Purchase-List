@@ -1,20 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {Creators as ListActions} from '../store/actions/list';
 import {TextField, MenuItem, InputAdornment, Button} from '@material-ui/core';
 
-export default function Fomr() {
+export default function Form() {
     const units = ['kg', 'lt', 'un'];
+
+    const [list, setList] = useState('');
+    const [product, setProduct] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [unit, setUnit] = useState('');
+    const [price, setPrice] = useState('');
+    const [showErrors, setShowErrors] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const handleSubmtit = () => {
+        if (!list || !product || !quantity || !unit) {
+            setShowErrors(true);
+        } else {
+            dispatch(
+                ListActions.addProduct({product, quantity, unit, price}, list),
+            );
+            setList('');
+            setProduct('');
+            setQuantity('');
+            setUnit('');
+            setPrice('');
+            setShowErrors(true);
+        }
+    };
 
     return (
         <form className="form-container">
             <div className="form-row">
                 <TextField
-                    label="Lista"
+                    label="List"
                     name="list"
-                    value={''}
-                    onChange={() => {}}
+                    value={list}
+                    onChange={(e) => setList(e.target.value)}
                     required
+                    error={!list && showErrors}
                 />
-                <Button variant="outlined" color="secondary">
+                <Button
+                    variant="outlined"
+                    onClick={handleSubmtit}
+                    color="secondary">
                     Add
                 </Button>
             </div>
@@ -22,26 +53,29 @@ export default function Fomr() {
                 <TextField
                     label="Product"
                     name="product"
-                    value={''}
-                    onChange={() => {}}
+                    value={product}
+                    onChange={(e) => setProduct(e.target.value)}
                     required
+                    error={!product && showErrors}
                 />
                 <TextField
                     label="Quantity"
                     name="quantity"
-                    value={''}
-                    onChange={() => {}}
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
                     required
+                    error={!quantity && showErrors}
                 />
                 <TextField
                     select
-                    label="Unity"
-                    name="unity"
-                    value={''}
-                    onChange={() => {}}
-                    required>
+                    label="Unit"
+                    name="unit"
+                    value={unit}
+                    onChange={(e) => setUnit(e.target.value)}
+                    required
+                    error={!unit && showErrors}>
                     {units.map((option) => (
-                        <MenuItem key="option" value="option">
+                        <MenuItem key={option} value={option}>
                             {option}
                         </MenuItem>
                     ))}
@@ -49,8 +83,8 @@ export default function Fomr() {
                 <TextField
                     label="Price"
                     name="price"
-                    value={''}
-                    onChange={() => {}}
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">R$</InputAdornment>
