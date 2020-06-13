@@ -13,7 +13,7 @@ export default function CreateList() {
             <Form />
             <div className="list-items-container">
                 {list.items.map((item) => (
-                    <ListItem item={item} key={item.product} />
+                    <ListItem item={item} key={item.id} />
                 ))}
             </div>
         </div>
