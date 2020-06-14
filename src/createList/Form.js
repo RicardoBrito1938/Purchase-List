@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {Creators as ListActions} from '../store/actions/list';
+import {Creators as FormActions} from '../store/actions/form';
+
 import {TextField, MenuItem, InputAdornment, Button} from '@material-ui/core';
 
 export default function Form() {
@@ -14,6 +16,17 @@ export default function Form() {
     const [showErrors, setShowErrors] = useState(false);
 
     const dispatch = useDispatch();
+    const form = useSelector((state) => state.form);
+
+    useEffect(() => {
+        if (form.action === 'update') {
+            const {product, quantity, unit, price} = form.productToUpdate;
+            setProduct(product);
+            setQuantity(quantity);
+            setUnit(unit);
+            setPrice(price);
+        }
+    }, [form.action, form.productToUpdate]);
 
     const handleSubmtit = () => {
         if (!list || !product || !quantity || !unit) {

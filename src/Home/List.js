@@ -7,7 +7,7 @@ import ListItem from './ListItem';
 
 import './List.css';
 
-export default function List({list, total}) {
+export default function List({list, total, closedItems, openItems}) {
     return (
         <CustomCard
             containerClass="list-container"
@@ -16,8 +16,11 @@ export default function List({list, total}) {
             <div>
                 <p className="title">{list}</p>
                 <div className="list-card-body">
-                    <ListItem icon={faShoppingBasket} text="1 remaining item" />
-                    <ListItem icon={faCheck} text="2 items on cart" />
+                    <ListItem
+                        icon={faShoppingBasket}
+                        text={`${openItems} open`}
+                    />
+                    <ListItem icon={faCheck} text={`${closedItems} on cart`} />
                 </div>
             </div>
         </CustomCard>
