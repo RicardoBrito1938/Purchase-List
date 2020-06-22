@@ -32,16 +32,40 @@ export default function Form() {
         if (!list || !product || !quantity || !unit) {
             setShowErrors(true);
         } else {
-            dispatch(
-                ListActions.addProduct({product, quantity, unit, price}, list),
-            );
-            setList('');
-            setProduct('');
-            setQuantity('');
-            setUnit('');
-            setPrice('');
-            setShowErrors(true);
+            form.action === 'new'
+                ? addItem(list, product, quantity, unit, price)
+                : updateItem(list, product, quantity, unit, price);
         }
+    };
+
+    const addItem = (list, product, quantity, unit, price) => {
+        dispatch(
+            ListActions.addProduct(
+                {list, product, quantity, unit, price},
+                list,
+            ),
+        );
+        clearState();
+    };
+
+    const updateItem = (list, product, quantity, unit, price) => {
+        const {id, checked} = form.productToUpdate;
+        dispatch(
+            ListActions.updateProduct(
+                {product, quantity, unit, price, id, checked},
+                list,
+            ),
+        );
+        clearState();
+        dispatch(FormActions.finishUpdate());
+    };
+
+    const clearState = () => {
+        setProduct('');
+        setQuantity('');
+        setUnit('');
+        setPrice('');
+        setShowErrors(true);
     };
 
     return (
@@ -59,7 +83,7 @@ export default function Form() {
                     variant="outlined"
                     onClick={handleSubmtit}
                     color="secondary">
-                    Add
+                    Save
                 </Button>
             </div>
             <div className="form-row">

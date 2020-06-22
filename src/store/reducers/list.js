@@ -8,8 +8,15 @@ const initialState = {
 
 export default function list(state = initialState, action) {
     switch (action.type) {
+        case Types.NEW_LIST:
+            return {
+                ...initialState,
+                date: getDate(),
+            };
+
         case Types.ADD_PRODUCT:
             return {
+                ...state,
                 list: action.list,
                 items: [
                     ...state.items,
@@ -33,14 +40,27 @@ export default function list(state = initialState, action) {
                 ...state,
                 items: toogleItem(state.items, action.productId),
             };
+
+        case Types.UPDATE_PRODUCT:
+            return {
+                ...state,
+                list: action.list,
+                items: updateProduct(state.items, action.product),
+            };
         default:
             return state;
     }
 }
 
-function getItemTotal(product) {
+const getDate = () => {
+    const date = new Date();
+    const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
+    return date.toLocaleDateString('pt-BR', options);
+};
+
+const getItemTotal = (product) => {
     return product.price * product.quantity;
-}
+};
 
 //ache o item para ser modificado
 const toogleItem = (items, productId) => {
@@ -49,5 +69,14 @@ const toogleItem = (items, productId) => {
         ...items.slice(0, index), //todos os items antes  do item a ser modificado
         {...items[index], checked: !items[index].checked}, // item atualizado
         ...items.slice(index + 1), //todos os items depois do item  a ser modificado
+    ];
+};
+
+const updateProduct = (items, product) => {
+    const index = items.findIndex((item) => item.id === product.id);
+    return [
+        ...items.slice(0, index),
+        {...product, total: getItemTotal(product)},
+        ...items.slice(index + 1),
     ];
 };
