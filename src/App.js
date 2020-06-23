@@ -28,7 +28,10 @@ function App() {
                         <Header />
                         <Switch>
                             <Route path="/" exact component={Home} />
-                            <Route path="/list" component={createList} />
+                            <Route
+                                path="/list/:action"
+                                component={createList}
+                            />
                         </Switch>
                     </>
                 </Router>

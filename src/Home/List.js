@@ -11,7 +11,7 @@ export default function List({list, total, closedItems, openItems}) {
     return (
         <CustomCard
             containerClass="list-container"
-            link="/list"
+            link="/list/edicao"
             footer={<ListFooter total={total} />}>
             <div>
                 <p className="title">{list}</p>

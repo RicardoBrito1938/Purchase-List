@@ -11,7 +11,7 @@ const NewList = () => {
     };
 
     return (
-        <CustomCard link="/list" containerClass="new-list-container">
+        <CustomCard link="/list/novo" containerClass="new-list-container">
             <div onClick={handleNewList}>
                 <p className="title">Adicionar novas listas</p>
             </div>
