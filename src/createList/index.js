@@ -12,7 +12,7 @@ export default function CreateList() {
 
     return (
         <div className="page-container">
-            <Form list={list.list} url={action} />
+            <Form url={action} />
             <div className="list-items-container">
                 {list.items.map((item) => (
                     <ListItem item={item} key={item.id} />

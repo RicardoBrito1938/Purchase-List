@@ -5,7 +5,7 @@ import {Checkbox, Typography} from '@material-ui/core';
 import {useDispatch} from 'react-redux';
 import {Creators as ListActions} from '../store/actions/list';
 
-export default function ListItem({item, list}) {
+export default function ListItem({item}) {
     const dispatch = useDispatch();
 
     return (
@@ -13,7 +13,7 @@ export default function ListItem({item, list}) {
             link="#"
             image="https://s2.glbimg.com/P6Nn4AXYPq-K1Xek4cCKyONYYyA=/e.glbimg.com/og/ed/f/original/2014/01/15/cafe.jpg"
             containerClass="list-item"
-            footer={<ListItemFooter list={list} item={item} />}>
+            footer={<ListItemFooter item={item} />}>
             <div>
                 <div className="list-item-header">
                     <Typography variant="subtitle1" component="h2">

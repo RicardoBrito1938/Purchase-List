@@ -1,12 +1,15 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPen, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Creators as ListActions} from '../store/actions/list';
 import {Creators as FormActions} from '../store/actions/form';
 
-export default function ListItemFooter({item, list}) {
+export default function ListItemFooter({item}) {
     const dispatch = useDispatch();
+    const {list} = useSelector((state) => state.list);
+
+    console.log('esta sendo enviado de ListItemFooter', list);
 
     return (
         <div className="list-item-footer">
