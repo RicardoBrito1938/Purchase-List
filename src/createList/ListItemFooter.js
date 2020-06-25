@@ -5,7 +5,7 @@ import {useDispatch} from 'react-redux';
 import {Creators as ListActions} from '../store/actions/list';
 import {Creators as FormActions} from '../store/actions/form';
 
-export default function ListItemFooter({item}) {
+export default function ListItemFooter({item, list}) {
     const dispatch = useDispatch();
 
     return (
@@ -13,7 +13,7 @@ export default function ListItemFooter({item}) {
             <div className="list-card-footer-actions">
                 <FontAwesomeIcon
                     onClick={() => {
-                        dispatch(FormActions.startUpdate(item));
+                        dispatch(FormActions.startUpdate(list, item));
                     }}
                     icon={faPen}
                     color="#00b0ff"
