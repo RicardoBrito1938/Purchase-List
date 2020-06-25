@@ -22,12 +22,14 @@ export default function Form({url}) {
     useEffect(() => {
         if (form.action === 'update') {
             const {product, quantity, unit, price} = form.productToUpdate;
+            const list = form.listToUpdate;
+            setList(list);
             setProduct(product);
             setQuantity(quantity);
             setUnit(unit);
             setPrice(price);
         }
-    }, [form.action, form.productToUpdate]);
+    }, [form.action, form.listToUpdate, form.productToUpdate]);
 
     const handleSubmtit = () => {
         if (!list || !product || !quantity || !unit) {
