@@ -9,8 +9,6 @@ export default function ListItemFooter({item}) {
     const dispatch = useDispatch();
     const {list} = useSelector((state) => state.list);
 
-    console.log('esta sendo enviado de ListItemFooter', list);
-
     return (
         <div className="list-item-footer">
             <div className="list-card-footer-actions">
