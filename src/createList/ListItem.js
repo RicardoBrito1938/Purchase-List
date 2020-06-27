@@ -11,7 +11,7 @@ export default function ListItem({item}) {
     return (
         <CustormCard
             link="#"
-            image="https://s2.glbimg.com/P6Nn4AXYPq-K1Xek4cCKyONYYyA=/e.glbimg.com/og/ed/f/original/2014/01/15/cafe.jpg"
+            image={item.img}
             containerClass="list-item"
             footer={<ListItemFooter item={item} />}>
             <div>

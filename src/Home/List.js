@@ -7,12 +7,13 @@ import ListItem from './ListItem';
 
 import './List.css';
 
-export default function List({list, total, closedItems, openItems}) {
+export default function List({list, total, closedItems, openItems, date}) {
     return (
         <CustomCard
             containerClass="list-container"
             link="/list/edicao"
-            footer={<ListFooter total={total} />}>
+            footer={<ListFooter date={date} total={total} />}
+            cardClass={openItems < 1 ? 'closed-list' : 'opened-list'}>
             <div>
                 <p className="title">{list}</p>
                 <div className="list-card-body">

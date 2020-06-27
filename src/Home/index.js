@@ -12,9 +12,10 @@ export default function Home() {
     const total = list.items.reduce((total, item) => total + item.total, 0);
     const openItems = list.items.filter((item) => !item.checked).length;
     const closedItems = list.items.filter((item) => item.checked).length;
+    const date = list.date;
 
     return (
-        <div className="page-container">
+        <div className="page-container home-image">
             <NewList />
             {list.items.length > 0 && (
                 <List
@@ -22,6 +23,7 @@ export default function Home() {
                     total={total}
                     openItems={openItems}
                     closedItems={closedItems}
+                    date={date}
                 />
             )}
         </div>

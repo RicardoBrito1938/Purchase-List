@@ -12,10 +12,17 @@ import {Link} from 'react-router-dom';
 
 import './CustomCard.css';
 
-const CustomCard = ({children, footer, containerClass, image, link}) => (
+const CustomCard = ({
+    children,
+    footer,
+    containerClass,
+    image,
+    link,
+    cardClass,
+}) => (
     <div className={containerClass}>
         <Link to={link}>
-            <Card className="card">
+            <Card className={`card ${cardClass ? cardClass : ''}`}>
                 <CardActionArea className="card-action-area">
                     {image && (
                         <CardMedia

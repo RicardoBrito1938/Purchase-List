@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import ListItem from './ListItem';
+import NewItem from './NewItem';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 
@@ -17,6 +18,7 @@ export default function CreateList() {
                 {list.items.map((item) => (
                     <ListItem item={item} key={item.id} />
                 ))}
+                {action === 'edicao' && <NewItem list={list.list} />}
             </div>
         </div>
     );

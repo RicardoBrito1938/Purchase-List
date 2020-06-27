@@ -17,7 +17,7 @@ export default function Form({url}) {
 
     const dispatch = useDispatch();
     const form = useSelector((state) => state.form);
-    const showForm = form.action === 'update' || url === 'novo';
+    const showForm = form.action || url === 'novo';
 
     useEffect(() => {
         if (form.action === 'update') {
@@ -29,15 +29,20 @@ export default function Form({url}) {
             setUnit(unit);
             setPrice(price);
         }
+
+        if (form.action === 'new') {
+            const list = form.listToUpdate;
+            setList(list);
+        }
     }, [form.action, form.listToUpdate, form.productToUpdate]);
 
     const handleSubmtit = () => {
         if (!list || !product || !quantity || !unit) {
             setShowErrors(true);
         } else {
-            form.action === 'new'
-                ? addItem(list, product, quantity, unit, price)
-                : updateItem(list, product, quantity, unit, price);
+            form.action === 'update'
+                ? updateItem(list, product, quantity, unit, price)
+                : addItem(list, product, quantity, unit, price);
         }
     };
 
@@ -49,6 +54,7 @@ export default function Form({url}) {
             ),
         );
         clearState();
+        dispatch(FormActions.finishAdd());
     };
 
     const updateItem = (list, product, quantity, unit, price) => {

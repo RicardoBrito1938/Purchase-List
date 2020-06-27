@@ -4,3 +4,23 @@
     flex-direction: column;
     align-items: center;
 }
+
+.new-list-container {
+    width: 80%;
+}
+
+.home-image {
+    background-image: url(https://mhmcdn.ynvolve.net/?w=750&h=450&quality=90&clipping=landscape&url=//manualdohomemmoderno.com.br/files/2018/03/mercado-700x400.jpg&format=webp&hash=4dbf12ff263d563e489ba16388ed82d26dc5a4fd1e327f5c1b538accf704a345);
+    height: 800px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.new-list-container > a > div {
+    background-color: rgb(255, 255, 255, 0.8);
+}
+
+.list-container > a > div {
+    background-color: rgb(255, 255, 255, 0.8);
+}
